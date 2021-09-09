@@ -1,0 +1,57 @@
+Feature:
+    Idéia de atendender uma funcionalidade por completo, realizando o acesso a dados, regras de negócio e gerenciamento do estado.
+
+Domain:
+    Camada que representa a lógica para atender a funcionalidade, independente da apresentação.
+
+    Data:
+        => Camada para acesso a dados, seja por API, File etc ...
+
+    Repositório:
+        => Camada para ao dado tratado para o dominio da aplicação, exemplo se chegar name/Nome/Usuario e a aplicação só entender name, todos os demais deve ser transformados.
+
+    Service:
+        => Camada que trata toda regra de negócio para funcionamento da feature 
+
+
+State: 
+    Camada que gerencia o estado da aplicação para uso na camada de view. O gerencia utilizado é o redux
+
+    Action:
+        Mapeamento de todas as actions ou nome dos eventos disparado para gerenciamento do estado, recebendo uma action a partir do middleware que intecepta as requisicoes 
+
+    Reducers:
+        Mapeado todos os reducers que são funções que manipula as mudanças do estado.
+
+    Saga:
+        Como os reducers só causa o efeito nos estados, esse middleware intercepta uma action, chama a camada de serviço e de acordo com o retorno dispara uma action
+
+
+View:
+    Camada de apresentação
+
+
+
+Utilizando a feature dentro de uma aplicação
+    => A feature é disponibilizada pela camada de estado, já que ela é o ponto unico de mudanças, sabendo chamar a camada de dominio pelo serviço.
+
+
+Core da aplicação independente de feature
+    Redux:
+        Gerencia o estado da aplicação toda, isso quer dizer de todas as features
+        
+        Actions: 
+            Mapeia todas as actions das features para ter um ponto unico dentro da camada de view 
+        
+        Reducers:
+            Mapeia todos os reducers das features para fazer o reducer combiner 
+        Sagas:
+            Mapeia todos os sagas e adciona os watchs das features 
+        Store:
+            Configuração do reducer redux persist para persisitir o estado no cliente 
+
+    
+
+    
+
+    
